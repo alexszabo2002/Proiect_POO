@@ -10,7 +10,7 @@ class Zona;
 class Eveniment
 {
 private:
-	string denumireEveniment;
+	char* denumireEveniment;
 	string data;
 	int ora;
 	int minut;
@@ -20,13 +20,13 @@ private:
 
 public:
 	Eveniment();
-	Eveniment(string, string, int, int, string, int);
+	Eveniment(const char* , string, int, int, string, int);
 	Eveniment(const Eveniment&);
 	~Eveniment();
 	Eveniment& operator=(const Eveniment&);
 
-	void setDenumireEveniment(string);
-	string getDenumireEveniment();
+	void setDenumireEveniment(const char*);
+	char* getDenumireEveniment();
 
 	void setData(string);
 	string getData();
@@ -46,5 +46,5 @@ public:
 	friend ostream& operator<<(ostream&, Eveniment);
 	friend istream& operator>>(istream&, Eveniment&);
 
-	friend class Zona;
+	//friend class Zona;
 };

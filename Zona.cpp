@@ -8,13 +8,15 @@ Zona::Zona()
 {
 	denumireZona = "N/A";
 	nrLocuriZona = 0;
+	nrLocuriPerRand = 0;
 	locuri = nullptr;
 }
 
-Zona::Zona(string _denumireZona, int _nrLocuriZona)
+Zona::Zona(string _denumireZona, int _nrLocuriZona, int _nrLocuriPerRand)
 {
 	denumireZona = _denumireZona;
 	nrLocuriZona = _nrLocuriZona;
+	nrLocuriPerRand = _nrLocuriPerRand;
 
 	if (nrLocuriZona > 0)
 	{
@@ -39,6 +41,7 @@ Zona::Zona(const Zona& z)
 	if (z.locuri != nullptr && z.nrLocuriZona > 0)
 	{
 		this->nrLocuriZona = z.nrLocuriZona;
+		this->nrLocuriPerRand = z.nrLocuriPerRand;
 
 		this->locuri = new int[z.nrLocuriZona];
 		for (int i = 0; i < z.nrLocuriZona; i++)
@@ -49,6 +52,7 @@ Zona::Zona(const Zona& z)
 	else
 	{
 		this->nrLocuriZona = 0;
+		this->nrLocuriPerRand = 0;
 		this->locuri = nullptr;
 	}
 }
@@ -68,21 +72,27 @@ Zona& Zona::operator=(const Zona& z)
 	{
 		this->denumireZona = z.denumireZona;
 
-		if (this->locuri != nullptr && this->nrLocuriZona > 0)
+		if (this->locuri != nullptr)
 		{
 			delete[] this->locuri;
+		}
 
-			this->nrLocuriZona = z.nrLocuriZona;
-
+		if(z.locuri != nullptr && z.nrLocuriZona > 0)
+		{
 			this->locuri = new int[z.nrLocuriZona];
+
 			for (int i = 0; i < z.nrLocuriZona; i++)
 			{
 				this->locuri[i] = z.locuri[i];
 			}
+
+			this->nrLocuriZona = z.nrLocuriZona;
+			this->nrLocuriPerRand = z.nrLocuriPerRand;
 		}
 		else
 		{
 			this->nrLocuriZona = 0;
+			this->nrLocuriPerRand = 0;
 			this->locuri = nullptr;
 		}
 	}
@@ -128,6 +138,16 @@ int Zona::getNrLocuriZona()
 	return nrLocuriZona;
 }
 
+void Zona::setNrLocuriPerRand(int _nrLocuriPerRand)
+{
+	this->nrLocuriPerRand = _nrLocuriPerRand;
+}
+
+int Zona::getNrLocuriPerRand()
+{
+	return nrLocuriPerRand;
+}
+
 void Zona::getLocuri()
 {
 	if (this->nrLocuriZona == 0)
@@ -138,7 +158,33 @@ void Zona::getLocuri()
 	{
 		for (int i = 0; i < this->nrLocuriZona; i++)
 		{
-			cout << this->locuri[i] << " ";
+			if (this->locuri[i] % this->nrLocuriPerRand == 0)
+			{
+				cout << this->locuri[i] << endl;
+			}
+			else
+			{
+				cout << this->locuri[i] << " ";
+			}
+		}
+	}
+}
+
+void Zona::getRand(int loc)
+{
+	if (loc > this->nrLocuriZona || loc < 0)
+	{
+		cout << "Loc invalid" << endl;
+	}
+	else
+	{
+		if (loc % this->nrLocuriPerRand == 0)
+		{
+			cout << loc / this->nrLocuriPerRand;
+		}
+		else
+		{
+			cout << loc / this->nrLocuriPerRand + 1;
 		}
 	}
 }
@@ -147,11 +193,12 @@ ostream& operator<<(ostream& out, Zona z)
 {
 	out << "Denumire zona: " << z.denumireZona << endl;
 	out << "Nr locuri zona: " << z.nrLocuriZona << endl;
+	out << "Nr locuri per rand: " << z.nrLocuriPerRand << endl;
 	out << endl;
 
 	for (int i = 0; i < z.nrLocuriZona; i++)
 	{
-		if (z.locuri[i] % 10 == 9)
+		if (z.locuri[i] % z.nrLocuriPerRand == 0)
 		{
 			out << z.locuri[i] << endl;
 		}
@@ -161,6 +208,7 @@ ostream& operator<<(ostream& out, Zona z)
 		}
 	}
 	out << endl;
+
 	return out;
 }
 

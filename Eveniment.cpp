@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
 #include "Eveniment.h"
-#include "Zona.h"
+//#include "Zona.h"
 
 using namespace std;
 
 Eveniment::Eveniment() 
 {
-	denumireEveniment = "N/A";
+	denumireEveniment = nullptr;
 	data = "N/A";
 	ora = 0;
 	minut = 0;
@@ -15,9 +15,18 @@ Eveniment::Eveniment()
 	nrZone = 0;
 }
 
-Eveniment::Eveniment(string _denumireEveniment, string _data, int _ora, int _minut, string _adresa, int _nrZone)
+Eveniment::Eveniment(const char* _denumireEveniment, string _data, int _ora, int _minut, string _adresa, int _nrZone)
 {
-	denumireEveniment = _denumireEveniment;
+	if (denumireEveniment != nullptr)
+	{
+		denumireEveniment = new char[strlen(_denumireEveniment) + 1];
+		strcpy_s(denumireEveniment, strlen(_denumireEveniment) + 1, _denumireEveniment);
+	}
+	else
+	{
+		denumireEveniment = nullptr;
+	}
+
 	data = _data;
 	ora = _ora;
 	minut = _minut;
@@ -28,7 +37,16 @@ Eveniment::Eveniment(string _denumireEveniment, string _data, int _ora, int _min
 
 Eveniment::Eveniment(const Eveniment& e) 
 {
-	this->denumireEveniment = e.denumireEveniment;
+	if (e.denumireEveniment != nullptr)
+	{
+		this->denumireEveniment = new char[strlen(e.denumireEveniment) + 1];
+		strcpy_s(this->denumireEveniment, strlen(e.denumireEveniment) + 1, e.denumireEveniment);
+	}
+	else
+	{
+		this->denumireEveniment = nullptr;
+	}
+
 	this->data = e.data;
 	this->ora = e.ora;
 	this->minut = e.minut;
@@ -38,14 +56,27 @@ Eveniment::Eveniment(const Eveniment& e)
 
 Eveniment::~Eveniment()
 {
-
+	if (denumireEveniment != nullptr)
+	{
+		delete[] denumireEveniment;
+	}
 }
 
 Eveniment& Eveniment::operator=(const Eveniment& e)
 {
 	if (this != &e)
 	{
-		this->denumireEveniment = e.denumireEveniment;
+		if (e.denumireEveniment != nullptr)
+		{
+			if (this->denumireEveniment != nullptr)
+			{
+				delete[] this->denumireEveniment;
+			}
+
+			this->denumireEveniment = new char[strlen(e.denumireEveniment) + 1];
+			strcpy_s(this->denumireEveniment, strlen(e.denumireEveniment) + 1, e.denumireEveniment);
+		}
+
 		this->data = e.data;
 		this->ora = e.ora;
 		this->minut = e.minut;
@@ -55,14 +86,30 @@ Eveniment& Eveniment::operator=(const Eveniment& e)
 	return *this;
 }
 
-void Eveniment::setDenumireEveniment(string _denumireEveniment)
+void Eveniment::setDenumireEveniment(const char* _denumireEveniment)
 {
-	this->denumireEveniment = _denumireEveniment;
+	if (_denumireEveniment != nullptr)
+	{
+		if (this->denumireEveniment != nullptr)
+		{
+			delete[] this->denumireEveniment;
+		}
+
+		this->denumireEveniment = new char[strlen(_denumireEveniment) + 1];
+		strcpy_s(this->denumireEveniment, strlen(_denumireEveniment) + 1, _denumireEveniment);
+	}
 }
 
-string Eveniment::getDenumireEveniment()
+char* Eveniment::getDenumireEveniment()
 {
-	return denumireEveniment;
+	if (denumireEveniment != nullptr)
+	{
+		char* copie = new char[strlen(denumireEveniment) + 1];
+		strcpy_s(copie, strlen(denumireEveniment) + 1, denumireEveniment);
+		return copie;
+	}
+
+	return nullptr;
 }
 
 void Eveniment::setData(string _data)
@@ -117,7 +164,12 @@ int Eveniment::getNrZone()
 
 ostream& operator<<(ostream& out, Eveniment e)
 {
-	out << "Denumire eveniment: " << e.denumireEveniment << endl;
+	out << "Denumire eveniment: ";
+	if (e.denumireEveniment != nullptr)
+	{
+		out << e.denumireEveniment;
+	}
+	out << endl;
 	out << "Data eveniment: " << e.data << endl;
 	out << "Ora: " << e.ora << endl;
 	out << "Minutul: " << e.minut << endl;
@@ -130,8 +182,11 @@ ostream& operator<<(ostream& out, Eveniment e)
 istream& operator>>(istream& in, Eveniment& e)
 {
 	cout << "Denumire eveniment: ";
+	string buffer;
 	in >> ws;
-	getline(in, e.denumireEveniment);
+	getline(in, buffer);
+	e.setDenumireEveniment(buffer.c_str());
+	
 	cout << "Data eveniment: ";
 	in >> ws;
 	getline(in, e.data);

@@ -27,14 +27,35 @@ int main()
 		cin >> nr;
 		vectorzone[i].setNrLocuriZona(nr);
 
+		cout << "Nr locuri per rand: ";
+		cin >> nr;
+		vectorzone[i].setNrLocuriPerRand(nr);
+
 	}
+	cout << endl;
 
 	for (int i = 0; i < e.getNrZone(); i++)
 	{
+		cout << "Denumirea zonei: ";
 		cout << vectorzone[i].getDenumireZona() << endl;
+		cout << endl;
+
+		cout << "Numarul de locuri al zonei: ";
 		cout << vectorzone[i].getNrLocuriZona() << endl;
+		cout << endl;
+
+		cout << "Numarul de locuri maxim pe rand: ";
+		cout << vectorzone[i].getNrLocuriPerRand() << endl;
+		cout << endl;
+
+		cout << "Locuri:" << endl;
 		vectorzone[i].getLocuri();
+		cout << endl;
 		cout << endl;
 	}
 
+	cout << "In zona 1, locul 6 se afla pe randul: ";
+	vectorzone[0].getRand(6);
+
 }
+

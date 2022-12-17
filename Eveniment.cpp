@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
 #include "Eveniment.h"
+#include "Zona.h"
 
 using namespace std;
 
-Eveniment::Eveniment()
+Eveniment::Eveniment() 
 {
 	denumireEveniment = "N/A";
 	data = "N/A";
@@ -22,9 +23,10 @@ Eveniment::Eveniment(string _denumireEveniment, string _data, int _ora, int _min
 	minut = _minut;
 	adresa = _adresa;
 	nrZone = _nrZone;
+
 }
 
-Eveniment::Eveniment(const Eveniment& e)
+Eveniment::Eveniment(const Eveniment& e) 
 {
 	this->denumireEveniment = e.denumireEveniment;
 	this->data = e.data;
@@ -145,3 +147,4 @@ istream& operator>>(istream& in, Eveniment& e)
 
 	return in;
 }
+

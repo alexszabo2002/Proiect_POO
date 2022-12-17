@@ -101,12 +101,46 @@ string Zona::getDenumireZona()
 
 void Zona::setNrLocuriZona(int _nrLocuriZona)
 {
-	this->nrLocuriZona = _nrLocuriZona;
+	if (this->locuri != nullptr && this->nrLocuriZona > 0)
+	{
+		delete[] this->locuri;
+		this->locuri = nullptr;
+	}
+
+	if (_nrLocuriZona == 0)
+	{
+		this->nrLocuriZona = 0;
+		this->locuri = nullptr;
+	}
+	else
+	{
+		this->nrLocuriZona = _nrLocuriZona;
+		this->locuri = new int[_nrLocuriZona];
+		for (int i = 0; i < _nrLocuriZona; i++)
+		{
+			this->locuri[i] = i + 1;
+		}
+	}
 }
 
 int Zona::getNrLocuriZona()
 {
 	return nrLocuriZona;
+}
+
+void Zona::getLocuri()
+{
+	if (this->nrLocuriZona == 0)
+	{
+		cout << "Nu exista locuri" << endl;
+	}
+	else
+	{
+		for (int i = 0; i < this->nrLocuriZona; i++)
+		{
+			cout << this->locuri[i] << " ";
+		}
+	}
 }
 
 ostream& operator<<(ostream& out, Zona z)

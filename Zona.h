@@ -24,6 +24,8 @@ public:
 	void setNrLocuriZona(int);
 	int getNrLocuriZona();
 
+	void getLocuri();
+
 	friend ostream& operator<<(ostream&, Zona);
 	friend istream& operator>>(istream&, Zona&);
 };

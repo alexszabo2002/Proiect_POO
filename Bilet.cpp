@@ -6,7 +6,7 @@ using namespace std;
 
 string Bilet::mesajPtParticipanti = "Va uram vizionare placuta!";
 
-Bilet::Bilet() : idBilet(rand() * 9999 + rand())
+Bilet::Bilet() : idBilet(rand() + 2*rand() + 3*rand())
 {
 
 }
@@ -25,3 +25,5 @@ string Bilet::getMesajPtParticipanti()
 {
 	return mesajPtParticipanti;
 }
+
+

@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
 	cout << "THE TICKETING APP" << endl;
-	cout << "Creati un eveniment nou" << endl << endl;
+	cout << "CREATI UN EVENIMENT NOU" << endl << endl;
 
 	Eveniment e;
 	cin >> e;
@@ -23,12 +23,12 @@ int main()
 		nrTotalLocuriEveniment += vectorzone[i].getNrLocuriZona();
 	}
 
-	srand((unsigned)time(nullptr));
+	srand((unsigned)time(NULL));
 
 	Bilet* vectorBilete = new Bilet[nrTotalLocuriEveniment];
 
 
-	cout << "Introduceti date despre zone" << endl;
+	cout << "INTRODUCETI DATE DESPRE ZONE" << endl;
 	string s = "";
 	int n = 0;
 	float f = 0;
@@ -55,7 +55,7 @@ int main()
 	}
 
 	cout << endl;
-	cout << "Harta zonelor" << endl;
+	cout << "HARTA ZONELOR" << endl;
 
 	for (int i = 0; i < e.getNrZone(); i++)
 	{
@@ -68,15 +68,15 @@ int main()
 	}
 
 
-	cout << "Biletele generate sunt" << endl;
+	cout << "BILETELE GENERATE SUNT" << endl << endl;
 
 	int k = 0;
 	for (int i = 0; i < e.getNrZone(); i++)
 	{
-		srand((unsigned)time(nullptr));
+		srand((unsigned)time(NULL));
 		for (int j = 0; j < vectorzone[i].getNrLocuriZona(); j++)
 		{
-			srand((unsigned)time(nullptr));
+			srand((unsigned)time(NULL));
 			cout << "Id bilet: " << vectorBilete[k].getIdBilet() << endl;
 			k++;
 			cout << "Denumire eveniment: " << e.getDenumireEveniment() << endl;

@@ -11,6 +11,8 @@ private:
 	static string mesajPtParticipanti;
 
 public:
+	void srand();
+
 	Bilet();
 	Bilet(int);
 

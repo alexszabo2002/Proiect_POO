@@ -6,14 +6,14 @@ using namespace std;
 
 string Bilet::mesajPtParticipanti = "Va uram vizionare placuta!";
 
-Bilet::Bilet() : idBilet(rand() * 666 + rand())
+Bilet::Bilet() : idBilet(rand() * 9999 + rand())
 {
 
 }
 
 Bilet::Bilet(int _idBilet) : idBilet(_idBilet)
 {
-	_idBilet = rand() * 666 + rand();
+	_idBilet = rand() * 9999 + rand();
 }
 
 int Bilet::getIdBilet()
@@ -25,4 +25,3 @@ string Bilet::getMesajPtParticipanti()
 {
 	return mesajPtParticipanti;
 }
-

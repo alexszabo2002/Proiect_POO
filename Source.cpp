@@ -16,12 +16,17 @@ int main()
 
 	string s="";
 	int nr = 0;
+	float pr = 0;
 	for (int i = 0; i < e.getNrZone(); i++)
 	{
 		cout << "Denumire zona: ";
 		cin >> ws;
 		getline(cin, s);
 		vectorzone[i].setDenumireZona(s);
+
+		cout << "Pret zona: ";
+		cin >> pr;
+		vectorzone[i].setPretZona(pr);
 
 		cout << "Nr locuri: ";
 		cin >> nr;
@@ -38,15 +43,15 @@ int main()
 	{
 		cout << "Denumirea zonei: ";
 		cout << vectorzone[i].getDenumireZona() << endl;
-		cout << endl;
+
+		cout << "Pretul zonei: ";
+		cout << vectorzone[i].getPretZona() << endl;
 
 		cout << "Numarul de locuri al zonei: ";
 		cout << vectorzone[i].getNrLocuriZona() << endl;
-		cout << endl;
 
 		cout << "Numarul de locuri maxim pe rand: ";
 		cout << vectorzone[i].getNrLocuriPerRand() << endl;
-		cout << endl;
 
 		cout << "Locuri:" << endl;
 		vectorzone[i].getLocuri();

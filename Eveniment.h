@@ -1,11 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "Zona.h"
 
 using namespace std;
-
-class Zona;
 
 class Eveniment
 {
@@ -16,7 +13,6 @@ private:
 	int minut;
 	string adresa;
 	int nrZone;
-	Zona* zone;
 
 public:
 	Eveniment();
@@ -46,5 +42,4 @@ public:
 	friend ostream& operator<<(ostream&, Eveniment);
 	friend istream& operator>>(istream&, Eveniment&);
 
-	//friend class Zona;
 };

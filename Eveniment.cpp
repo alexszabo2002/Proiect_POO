@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "Eveniment.h"
-//#include "Zona.h"
 
 using namespace std;
 

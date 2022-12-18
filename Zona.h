@@ -8,19 +8,23 @@ class Zona
 {
 private:
 	string denumireZona;
+	float pretZona;
 	int nrLocuriZona;
 	int nrLocuriPerRand;
 	int* locuri;
 
 public:
 	Zona();
-	Zona(string, int, int);
+	Zona(string,float, int, int);
 	Zona(const Zona&);
 	~Zona();
 	Zona& operator=(const Zona&);
 
 	void setDenumireZona(string);
 	string getDenumireZona();
+
+	void setPretZona(float);
+	float getPretZona();
 
 	void setNrLocuriZona(int);
 	int getNrLocuriZona();

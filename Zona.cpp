@@ -7,14 +7,16 @@ using namespace std;
 Zona::Zona()
 {
 	denumireZona = "N/A";
+	pretZona = 0;
 	nrLocuriZona = 0;
 	nrLocuriPerRand = 0;
 	locuri = nullptr;
 }
 
-Zona::Zona(string _denumireZona, int _nrLocuriZona, int _nrLocuriPerRand)
+Zona::Zona(string _denumireZona, float _pretZona, int _nrLocuriZona, int _nrLocuriPerRand)
 {
 	denumireZona = _denumireZona;
+	pretZona = _pretZona;
 	nrLocuriZona = _nrLocuriZona;
 	nrLocuriPerRand = _nrLocuriPerRand;
 
@@ -37,6 +39,7 @@ Zona::Zona(string _denumireZona, int _nrLocuriZona, int _nrLocuriPerRand)
 Zona::Zona(const Zona& z)
 {
 	this->denumireZona = z.denumireZona;
+	this->pretZona = z.pretZona;
 
 	if (z.locuri != nullptr && z.nrLocuriZona > 0)
 	{
@@ -71,6 +74,7 @@ Zona& Zona::operator=(const Zona& z)
 	if (this != &z)
 	{
 		this->denumireZona = z.denumireZona;
+		this->pretZona = z.pretZona;
 
 		if (this->locuri != nullptr)
 		{
@@ -107,6 +111,16 @@ void Zona::setDenumireZona(string _denumireZona)
 string Zona::getDenumireZona()
 {
 	return denumireZona;
+}
+
+void Zona::setPretZona(float _pretZona)
+{
+	this->pretZona = _pretZona;
+}
+
+float Zona::getPretZona()
+{
+	return pretZona;
 }
 
 void Zona::setNrLocuriZona(int _nrLocuriZona)
@@ -192,6 +206,7 @@ void Zona::getRand(int loc)
 ostream& operator<<(ostream& out, Zona z)
 {
 	out << "Denumire zona: " << z.denumireZona << endl;
+	out << "Pret zona: " << z.pretZona << endl;
 	out << "Nr locuri zona: " << z.nrLocuriZona << endl;
 	out << "Nr locuri per rand: " << z.nrLocuriPerRand << endl;
 	out << endl;
@@ -217,6 +232,10 @@ istream& operator>>(istream& in, Zona& z)
 	cout << "Denumire zona: ";
 	in >> ws;
 	getline(in, z.denumireZona);
+
+	cout << "Pret zona: ";
+	in >> z.pretZona;
+
 	cout << "Nr locuri zona: ";
 	in >> z.nrLocuriZona;
 

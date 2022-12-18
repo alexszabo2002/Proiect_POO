@@ -2,12 +2,12 @@
 #include <string>
 #include "Eveniment.h"
 #include "Zona.h"
+#include "Bilet.h"
 
 using namespace std;
 
 int main()
 {	
-
 	cout << "Eveniment" << endl;
 	Eveniment e;
 	cin >> e;
@@ -61,6 +61,22 @@ int main()
 
 	cout << "In zona 1, locul 6 se afla pe randul: ";
 	vectorzone[0].getRand(6);
+	cout << endl;
 
+	int nrTotalLocuriEveniment = 0;
+	for (int i = 0; i < e.getNrZone(); i++)
+	{
+		nrTotalLocuriEveniment += vectorzone[i].getNrLocuriZona();
+	}
+	
+	srand((unsigned) time(0));
+
+	Bilet* vectorBilete = new Bilet[nrTotalLocuriEveniment];
+	string mesaj = vectorBilete->getMesajPtParticipanti();
+	for (int i = 0; i < nrTotalLocuriEveniment; i++)
+	{
+		cout << vectorBilete[i].getIdBilet() << endl;
+		cout << mesaj << endl << endl;
+	}
 }
 

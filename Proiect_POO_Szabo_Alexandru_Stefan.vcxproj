@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bilet.cpp" />
+    <ClCompile Include="BiletGratuit.cpp" />
     <ClCompile Include="Eveniment.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Zona.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bilet.h" />
+    <ClInclude Include="BiletGratuit.h" />
     <ClInclude Include="Eveniment.h" />
     <ClInclude Include="Zona.h" />
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include "Eveniment.h"
 #include "Zona.h"
 #include "Bilet.h"
+#include "BiletGratuit.h"
 
 using namespace std;
 
@@ -71,6 +72,7 @@ int main()
 
 	Bilet* vectorBilete = new Bilet[nrTotalLocuriEveniment];
 
+	BiletGratuit* vectorBileteGratis = new BiletGratuit[3];
 
 
 	cout << "BILETELE GENERATE SUNT" << endl << endl;
@@ -100,6 +102,18 @@ int main()
 		}
 
 
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "Id bilet: " << vectorBileteGratis[i].getIdBilet() << endl;
+		cout << "Denumire eveniment: " << e.getDenumireEveniment() << endl;
+		cout << "Data: " << e.getData() << endl;
+		cout << "Ora: " << e.getOra() << ":" << e.getMinut() << endl;
+		cout << "Adresa: " << e.getAdresa() << endl;
+		cout << vectorBileteGratis->getMesajDiscount() << endl;
+		cout << vectorBileteGratis->getMesajPtParticipanti() << endl;
+		cout << endl << endl;
 	}
 
 }

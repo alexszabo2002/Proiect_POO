@@ -6,26 +6,20 @@
 
 using namespace std;
 
+
 int main()
 {
 	cout << "THE TICKETING APP" << endl;
 	cout << "CREATI UN EVENIMENT NOU" << endl << endl;
+
+	srand((unsigned)time(NULL));
+
 
 	Eveniment e;
 	cin >> e;
 
 
 	Zona* vectorzone = new Zona[e.getNrZone()];
-
-	int nrTotalLocuriEveniment = 0;
-	for (int i = 0; i < e.getNrZone(); i++)
-	{
-		nrTotalLocuriEveniment += vectorzone[i].getNrLocuriZona();
-	}
-
-	srand((unsigned)time(NULL));
-
-	Bilet* vectorBilete = new Bilet[nrTotalLocuriEveniment];
 
 
 	cout << "INTRODUCETI DATE DESPRE ZONE" << endl;
@@ -68,15 +62,24 @@ int main()
 	}
 
 
+
+	int nrTotalLocuriEveniment = 0;
+	for (int i = 0; i < e.getNrZone(); i++)
+	{
+		nrTotalLocuriEveniment += vectorzone[i].getNrLocuriZona();
+	}
+
+	Bilet* vectorBilete = new Bilet[nrTotalLocuriEveniment];
+
+
+
 	cout << "BILETELE GENERATE SUNT" << endl << endl;
 
 	int k = 0;
 	for (int i = 0; i < e.getNrZone(); i++)
 	{
-		srand((unsigned)time(NULL));
 		for (int j = 0; j < vectorzone[i].getNrLocuriZona(); j++)
 		{
-			srand((unsigned)time(NULL));
 			cout << "Id bilet: " << vectorBilete[k].getIdBilet() << endl;
 			k++;
 			cout << "Denumire eveniment: " << e.getDenumireEveniment() << endl;

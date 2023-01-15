@@ -1,12 +1,12 @@
 #include <iostream>
-#include <string>
+#include <string>	
 #include "Bilet.h"
 
 using namespace std;
 
 string Bilet::mesajPtParticipanti = "Va uram vizionare placuta!";
 
-Bilet::Bilet() : idBilet(rand() + 2*rand() + 3*rand())
+Bilet::Bilet() : idBilet(rand() + 2 * rand() + 3 * rand())
 {
 
 }

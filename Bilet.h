@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <random>
 
 using namespace std;
 
@@ -20,3 +22,4 @@ public:
 	static string getMesajPtParticipanti();
 
 };
+
